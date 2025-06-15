@@ -22,7 +22,8 @@ RSpec.describe 'Order Webhooks', type: :request do
   describe 'POST /webhooks/order' do
     before do
       stub_request(:get, "https://external-service.test/orders/1538830588318-01")
-        .to_return(status: 200, body: '{"order_data": "fake"}', headers: { 'Content-Type' => 'application/json' })
+        .to_return(status: 200, body: { id: '1538830588318-01', customer_name: 'John Doe', items: [] }.to_json, headers: { 'Content-Type' => 'application/json' })
+      allow(SendOrderService).to receive(:new).and_return(double(call: true))
     end
 
     context 'with valid token' do
@@ -40,6 +41,12 @@ RSpec.describe 'Order Webhooks', type: :request do
         expect(log.order_id).to eq("1538830588318-01")
         expect(log.account).to eq("grupooscar")
         expect(log.success).to eq(true)
+      end
+
+      it 'chama o SendOrderService com os dados formatados' do
+        post '/webhooks/order', params: valid_payload, headers: headers
+
+        expect(SendOrderService).to have_received(:new).with(hash_including(id: '1538830588318-01', customer_name: 'John Doe', items: []))
       end
     end
 
@@ -61,6 +68,7 @@ RSpec.describe 'Order Webhooks', type: :request do
         post '/webhooks/order', params: valid_payload, headers: headers
 
         expect(response).to have_http_status(:bad_gateway)
+        expect(SendOrderService).not_to have_received(:new)
       end
     end
   end

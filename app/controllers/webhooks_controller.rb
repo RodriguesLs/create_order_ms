@@ -23,7 +23,10 @@ class WebhooksController < ApplicationController
     )
 
     begin
-      FetchOrderService.new(order_id).call
+      order_data = FetchOrderService.new(order_id).call
+
+      SendOrderService.new(order_data).call
+
       head :ok
     rescue => e
       Rails.logger.error("Fetching order error #{order_id}: #{e.message}")
