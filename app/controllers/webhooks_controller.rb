@@ -14,6 +14,11 @@ class WebhooksController < ApplicationController
     order_id = json["OrderId"]
     account = json.dig("Origin", "Account")
 
+    if WebhookLog.exists?(order_id: order_id, success: true)
+      Rails.logger.info("Pedido #{order_id} já foi processado anteriormente.")
+      return head :ok
+    end
+
     webhook_log = WebhookLog.create!(
       order_id: order_id,
       account: account,

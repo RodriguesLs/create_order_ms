@@ -84,5 +84,24 @@ RSpec.describe 'Order Webhooks', type: :request do
         expect(log.error_message).to eq(error_message)
       end
     end
+
+    context 'when the order has already been processed' do
+      before do
+        WebhookLog.create!(
+          order_id: '1538830588318-01',
+          account: 'grupoxpto',
+          success: true
+        )
+      end
+  
+      it 'does not process the order again' do
+        expect(FetchOrderService).not_to receive(:new)
+        expect(SendOrderService).not_to receive(:new)
+  
+        post '/webhooks/order', params: valid_payload, headers: headers
+  
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 end
