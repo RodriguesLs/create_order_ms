@@ -22,7 +22,7 @@ RSpec.describe 'Order Webhooks', type: :request do
   describe 'POST /webhooks/order' do
     before do
       stub_request(:get, "https://external-service.test/orders/1538830588318-01")
-        .to_return(status: 200, body: { id: '1538830588318-01', customer_name: 'John Doe', items: [] }.to_json, headers: { 'Content-Type' => 'application/json' })
+        .to_return(status: 200, body: { id: '1538830588318-01', status: 'ready-for-handling', customer_name: 'John Doe', items: [] }.to_json, headers: { 'Content-Type' => 'application/json' })
       allow(SendOrderService).to receive(:new).and_return(double(call: true))
     end
 
@@ -100,6 +100,48 @@ RSpec.describe 'Order Webhooks', type: :request do
   
         post '/webhooks/order', params: valid_payload, headers: headers
   
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when the order is in an improper status' do
+      before { ActiveJob::Base.queue_adapter = :test }
+
+      it 'schedules a retry and updates the WebhookLog' do
+        stub_request(:get, "https://external-service.test/orders/1538830588318-01")
+          .to_return(status: 200, body: { id: '1538830588318-01', status: 'payment-approved', customer_name: 'John Doe', items: [] }.to_json, headers: { 'Content-Type' => 'application/json' })
+
+        expect {
+          post '/webhooks/order', params: valid_payload, headers: headers
+        }.to change(WebhookLog, :count).by(1)
+
+        log = WebhookLog.last
+        expect(log.success).to eq(false)
+        expect(log.http_status).to eq(202)
+        expect(log.error_message).to eq('Status impróprio para processamento.')
+
+        expect(RetryOrderJob).to have_been_enqueued.with('1538830588318-01').at_least(:once)
+        expect(response).to have_http_status(:accepted)
+      end
+    end
+
+    context 'when the order is in the expected status' do
+      before do
+        ActiveJob::Base.queue_adapter = :test
+        allow(FetchOrderService).to receive(:new).and_return(double(call: { id: '1538830588318-01', status: 'ready-for-handling' }))
+      end
+
+      it 'processes the order and updates the WebhookLog without scheduling a retry' do
+        expect {
+          post '/webhooks/order', params: valid_payload, headers: headers
+        }.to change(WebhookLog, :count).by(1)
+
+        log = WebhookLog.last
+        expect(log.success).to eq(true)
+        expect(log.http_status).to eq(200)
+
+        expect(SendOrderService).to have_received(:new)
+        expect(RetryOrderJob).not_to have_been_enqueued
         expect(response).to have_http_status(:ok)
       end
     end

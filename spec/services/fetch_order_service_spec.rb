@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'webmock/rspec'
 
 RSpec.describe FetchOrderService do
   let(:order_id) { '1538830588318-01' }

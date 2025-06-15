@@ -28,11 +28,16 @@ class WebhooksController < ApplicationController
     begin
       order_data = FetchOrderService.new(order_id).call
 
-      SendOrderService.new(order_data).call
-
-      webhook_log.update!(success: true, http_status: 200)
-
-      head :ok
+      if order_data[:status] == 'ready-for-handling'
+        SendOrderService.new(order_data).call
+        webhook_log.update!(success: true, http_status: 200)
+        head :ok
+      else
+        Rails.logger.info("Pedido #{order_id} está em status impróprio. Agendando retry para daqui a 10 minutos.")
+        RetryOrderJob.set(wait: 10.minutes).perform_later(order_id)
+        webhook_log.update!(success: false, http_status: 202, error_message: 'Status impróprio para processamento.')
+        head :accepted
+      end
     rescue => e
       Rails.logger.error("Fetching order error #{order_id}: #{e.message}")
 

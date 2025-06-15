@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'webmock/rspec'
 
 RSpec.describe SendOrderService, type: :service do
   let(:order_data) { JSON.parse(File.read(Rails.root.join('spec/support/payloads/order_input.json')), symbolize_names: true) }

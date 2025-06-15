@@ -10,4 +10,7 @@ done
 # Executa migrações se existirem
 bundle exec rails db:prepare
 
+echo "Iniciando o Sidekiq..."
+bundle exec sidekiq -C config/sidekiq.yml &
+
 exec bundle exec rails server -b 0.0.0.0 -p 3000

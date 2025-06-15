@@ -60,3 +60,5 @@ group :test do
   gem "selenium-webdriver"
   gem 'webmock'
 end
+
+gem "sidekiq", "~> 8.0"
