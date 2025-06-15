@@ -6,8 +6,7 @@ class WebhooksController < ApplicationController
     expected_token = ENV.fetch("ORDER_HOOK_TOKEN")
 
     unless ActiveSupport::SecurityUtils.secure_compare(token.to_s, expected_token.to_s)
-      head :unauthorized
-      return
+      return head :unauthorized
     end
 
     # Parse do payload
@@ -19,12 +18,16 @@ class WebhooksController < ApplicationController
       order_id: order_id,
       account: account,
       payload: json.to_json,
-      http_status: 200, # temporário, atualizaremos com status real depois
+      http_status: 200,
       success: true
     )
 
-    head :ok
-  rescue JSON::ParserError
-    head :bad_request
+    begin
+      FetchOrderService.new(order_id).call
+      head :ok
+    rescue => e
+      Rails.logger.error("Fetching order error #{order_id}: #{e.message}")
+      head :bad_gateway
+    end
   end
 end

@@ -20,6 +20,11 @@ RSpec.describe 'Order Webhooks', type: :request do
   end
 
   describe 'POST /webhooks/order' do
+    before do
+      stub_request(:get, "https://external-service.test/orders/1538830588318-01")
+        .to_return(status: 200, body: '{"order_data": "fake"}', headers: { 'Content-Type' => 'application/json' })
+    end
+
     context 'with valid token' do
       it 'returns 200 OK' do
         post '/webhooks/order', params: valid_payload, headers: headers
@@ -34,7 +39,7 @@ RSpec.describe 'Order Webhooks', type: :request do
         log = WebhookLog.last
         expect(log.order_id).to eq("1538830588318-01")
         expect(log.account).to eq("grupooscar")
-        expect(log.success).to eq(true) # ajustar conforme o comportamento do serviço externo
+        expect(log.success).to eq(true)
       end
     end
 
@@ -44,6 +49,18 @@ RSpec.describe 'Order Webhooks', type: :request do
           'Authorization': 'Bearer wrong'
         }
         expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    context 'when external API fail' do
+      before do
+        allow_any_instance_of(FetchOrderService).to receive(:call).and_raise("Fetching order error")
+      end
+
+      it 'returns 502 Bad Gateway' do
+        post '/webhooks/order', params: valid_payload, headers: headers
+
+        expect(response).to have_http_status(:bad_gateway)
       end
     end
   end

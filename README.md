@@ -13,4 +13,4 @@ Para rodar o projeto basta ter o Docker e o docker-compose devidamente instalado
 
 * Como rodar os testes
 
-rails test
+bundle exec rspec
