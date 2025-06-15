@@ -14,7 +14,7 @@ RSpec.describe 'Order Webhooks', type: :request do
     {
       OrderId: '1538830588318-01',
       Origin: {
-        Account: 'grupooscar'
+        Account: 'grupoxpto'
       }
     }.to_json
   end
@@ -32,18 +32,18 @@ RSpec.describe 'Order Webhooks', type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it 'cria um WebhookLog com os dados recebidos' do
+      it 'create a WebhookLog with received data' do
         expect {
           post '/webhooks/order', params: valid_payload, headers: headers
         }.to change(WebhookLog, :count).by(1)
 
         log = WebhookLog.last
         expect(log.order_id).to eq("1538830588318-01")
-        expect(log.account).to eq("grupooscar")
+        expect(log.account).to eq("grupoxpto")
         expect(log.success).to eq(true)
       end
 
-      it 'chama o SendOrderService com os dados formatados' do
+      it 'call SendOrderService with formatted data' do
         post '/webhooks/order', params: valid_payload, headers: headers
 
         expect(SendOrderService).to have_received(:new).with(hash_including(id: '1538830588318-01', customer_name: 'John Doe', items: []))
@@ -60,8 +60,10 @@ RSpec.describe 'Order Webhooks', type: :request do
     end
 
     context 'when external API fail' do
+      let(:error_message) { 'Fetching order error' }
+
       before do
-        allow_any_instance_of(FetchOrderService).to receive(:call).and_raise("Fetching order error")
+        allow_any_instance_of(FetchOrderService).to receive(:call).and_raise(error_message)
       end
 
       it 'returns 502 Bad Gateway' do
@@ -69,6 +71,17 @@ RSpec.describe 'Order Webhooks', type: :request do
 
         expect(response).to have_http_status(:bad_gateway)
         expect(SendOrderService).not_to have_received(:new)
+      end
+
+      it 'updates the WebhookLog with failure' do
+        expect {
+          post '/webhooks/order', params: valid_payload, headers: headers
+        }.to change(WebhookLog, :count).by(1)
+
+        log = WebhookLog.last
+        expect(log.success).to eq(false)
+        expect(log.http_status).to eq(502)
+        expect(log.error_message).to eq(error_message)
       end
     end
   end

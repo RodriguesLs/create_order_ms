@@ -14,12 +14,10 @@ class WebhooksController < ApplicationController
     order_id = json["OrderId"]
     account = json.dig("Origin", "Account")
 
-    WebhookLog.create!(
+    webhook_log = WebhookLog.create!(
       order_id: order_id,
       account: account,
-      payload: json.to_json,
-      http_status: 200,
-      success: true
+      payload: json.to_json
     )
 
     begin
@@ -27,9 +25,14 @@ class WebhooksController < ApplicationController
 
       SendOrderService.new(order_data).call
 
+      webhook_log.update!(success: true, http_status: 200)
+
       head :ok
     rescue => e
       Rails.logger.error("Fetching order error #{order_id}: #{e.message}")
+
+      webhook_log.update!(success: false, http_status: 502, error_message: e.message)
+
       head :bad_gateway
     end
   end
