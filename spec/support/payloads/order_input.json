@@ -1,0 +1,434 @@
+{
+	"orderId": "1538600587420-02",
+	"sequence": "587421",
+	"sellerOrderId": "SLP-1538600587420-02",
+	"origin": "Marketplace",
+	"salesChannel": "5",
+	"status": "payment-approved",
+	"workflowIsInError": false,
+	"value": 29999,
+	"creationDate": "2025-06-10T19:52:08.0975513+00:00",
+	"lastChange": "2025-06-12T14:24:44.8212477+00:00",
+	"hostname": "grupoxpto",
+	"isCompleted": true,
+	"allowCancellation": true,
+	"allowEdition": false,
+	"isCheckedIn": true,
+	"authorizedDate": "2025-06-10T19:52:15.2368837+00:00",
+	"invoicedDate": null,
+	"cancelReason": null,
+	"checkedInPickupPointId": null,
+	"totals": [
+		{
+			"id": "Items",
+			"name": "Total dos Itens",
+			"value": 29999
+		},
+		{
+			"id": "Discounts",
+			"name": "Total dos Descontos",
+			"value": 5000
+		},
+		{
+			"id": "Shipping",
+			"name": "Total do Frete",
+			"value": 1000,
+			"alternativeTotals": [
+				{
+					"id": "AlternativeShippingTotal",
+					"name": "Alternative Shipping Total",
+					"value": 1653
+				},
+				{
+					"id": "AlternativeShippingDiscount",
+					"name": "Alternative Shipping Discount",
+					"value": -1653
+				}
+			]
+		},
+		{
+			"id": "Tax",
+			"name": "Total da Taxa",
+			"value": 0
+		}
+	],
+	"sellers": [
+		{
+			"id": "grupoxpto0026",
+			"name": "grupoxpto0026",
+			"logo": "",
+			"fulfillmentEndpoint": "http://fulfillment.external-api.com.br/api/fulfillment?an=grupoxpto0026&affiliateId=SLP&sc=5"
+		}
+	],
+	"clientPreferencesData": {
+		"locale": "pt-BR",
+		"optinNewsLetter": false
+	},
+	"cancellationData": null,
+	"taxData": null,
+	"subscriptionData": null,
+	"itemMetadata": {
+		"Items": [
+			{
+				"Id": "1644911",
+				"Seller": "1",
+				"Name": "Sapato Feminino Mocassim Couro Bottero Preto Preto - 36",
+				"SkuName": "Preto - 36",
+				"ProductId": "1000159716",
+				"RefId": "999999992591693",
+				"Ean": "7900039414737 1/9"
+			}
+		]
+	},
+	"marketplace": null,
+	"invoiceData": null,
+	"changesAttachment": null,
+	"callCenterOperatorData": null,
+	"packageAttachment": {
+		"packages": []
+	},
+	"shippingData": {
+		"id": "shippingData",
+		"address": {
+			"addressType": "residential",
+			"receiverName": "vanda cardoso",
+			"addressId": "5248754491704",
+			"versionId": null,
+			"entityId": null,
+			"postalCode": "12125-832",
+			"city": "Tremembé",
+			"state": "SP",
+			"country": "BRA",
+			"street": "Avenida Agostinho Manfredini",
+			"number": "1155 ",
+			"neighborhood": "Loteamento Residencial São Vicente de Paulo",
+			"complement": "ap 3",
+			"reference": null,
+			"geoCoordinates": [
+				-45.55858612060547,
+				-22.977142333984375
+			]
+		},
+		"logisticsInfo": [
+			{
+				"itemIndex": 0,
+				"itemId": "1642321",
+				"selectedSla": "Sedex",
+				"selectedDeliveryChannel": "delivery",
+				"lockTTL": "15d",
+				"price": 0,
+				"listPrice": 1653,
+				"sellingPrice": 0,
+				"deliveryWindow": null,
+				"deliveryCompany": "Sedex",
+				"shippingEstimate": "4bd",
+				"shippingEstimateDate": "2025-06-17T17:00:00.0000000+00:00",
+				"slas": [
+					{
+						"id": "Sedex",
+						"name": "Sedex",
+						"shippingEstimate": "4bd",
+						"deliveryWindow": null,
+						"availableDeliveryWindows": [],
+						"price": 0,
+						"listPrice": 1653,
+						"deliveryChannel": "delivery",
+						"pickupStoreInfo": {
+							"additionalInfo": null,
+							"address": null,
+							"dockId": null,
+							"friendlyName": null,
+							"isPickupStore": false
+						},
+						"polygonName": "",
+						"lockTTL": "15d",
+						"pickupPointId": null,
+						"transitTime": "2bd",
+						"pickupDistance": null,
+						"deliveryIds": [
+							{
+								"courierId": "18f86a1",
+								"courierName": "Sedex",
+								"dockId": "17d6236",
+								"quantity": 1,
+								"warehouseId": "1_1",
+								"accountCarrierName": "grupoxpto0026",
+								"kitItemDetails": []
+							}
+						],
+						"shippingEstimateDate": "2025-06-17T17:00:00.0000000+00:00"
+					},
+					{
+						"id": "Pac",
+						"name": "Pac",
+						"shippingEstimate": "7bd",
+						"deliveryWindow": null,
+						"availableDeliveryWindows": [],
+						"price": 2138,
+						"listPrice": 2138,
+						"deliveryChannel": "delivery",
+						"pickupStoreInfo": {
+							"additionalInfo": null,
+							"address": null,
+							"dockId": null,
+							"friendlyName": null,
+							"isPickupStore": false
+						},
+						"polygonName": "",
+						"lockTTL": "15d",
+						"pickupPointId": null,
+						"transitTime": "6bd",
+						"pickupDistance": null,
+						"deliveryIds": [
+							{
+								"courierId": "1867d73",
+								"courierName": "Pac",
+								"dockId": "108cab4",
+								"quantity": 1,
+								"warehouseId": "1_1",
+								"accountCarrierName": "grupoxpto0058",
+								"kitItemDetails": []
+							}
+						],
+						"shippingEstimateDate": null
+					}
+				],
+				"shipsTo": [
+					"BRA"
+				],
+				"deliveryIds": [
+					{
+						"courierId": "18f86a1",
+						"courierName": "Sedex",
+						"dockId": "17d6236",
+						"quantity": 1,
+						"warehouseId": "1_1",
+						"accountCarrierName": "grupoxpto0026",
+						"kitItemDetails": []
+					}
+				],
+				"deliveryChannels": [
+					{
+						"id": "delivery",
+						"stockBalance": 0
+					}
+				],
+				"deliveryChannel": "delivery",
+				"pickupStoreInfo": {
+					"additionalInfo": null,
+					"address": null,
+					"dockId": null,
+					"friendlyName": null,
+					"isPickupStore": false
+				},
+				"addressId": "5248754491704",
+				"versionId": null,
+				"entityId": null,
+				"polygonName": "",
+				"pickupPointId": null,
+				"transitTime": "2bd"
+			}
+		],
+		"trackingHints": null,
+		"selectedAddresses": [
+			{
+				"addressType": "residential",
+				"receiverName": "vanda cardoso",
+				"addressId": "5248754491704",
+				"versionId": null,
+				"entityId": null,
+				"postalCode": "12125-832",
+				"city": "Tremembé",
+				"state": "SP",
+				"country": "BRA",
+				"street": "Avenida Agostinho Manfredini",
+				"number": "1155 ",
+				"neighborhood": "Loteamento Residencial São Vicente de Paulo",
+				"complement": "ap 3",
+				"reference": null,
+				"geoCoordinates": [
+					-45.55858612060547,
+					-22.977142333984375
+				]
+			}
+		],
+		"availableAddresses": [
+			{
+				"addressType": "residential",
+				"receiverName": "vanda cardoso",
+				"addressId": "5248754491704",
+				"versionId": null,
+				"entityId": null,
+				"postalCode": "12125-832",
+				"city": "Tremembé",
+				"state": "SP",
+				"country": "BRA",
+				"street": "Avenida Agostinho Manfredini",
+				"number": "1155 ",
+				"neighborhood": "Loteamento Residencial São Vicente de Paulo",
+				"complement": "ap 3",
+				"reference": null,
+				"geoCoordinates": [
+					-45.55858612060547,
+					-22.977142333984375
+				]
+			}
+		],
+		"contactInformation": []
+	},
+	"marketingData": {
+		"id": "marketingData",
+		"utmSource": "01d82948-b895-11ef-b37f-e85bf566c93f",
+		"utmPartner": null,
+		"utmMedium": "",
+		"utmCampaign": "",
+		"coupon": "",
+		"utmiCampaign": null,
+		"utmipage": null,
+		"utmiPart": null,
+		"marketingTags": [
+			"instore",
+			"inStoreSocialSelling"
+		]
+	},
+	"giftRegistryData": null,
+	"clientProfileData": {
+		"id": "clientProfileData",
+		"email": "vandahelena328@gmail.com-250801439675b.ct.external-api.com.br",
+		"firstName": "vanda",
+		"lastName": "cardoso",
+		"documentType": "cpf",
+		"document": "08106697819",
+		"phone": "+5512991687444",
+		"corporateName": null,
+		"tradeName": null,
+		"corporateDocument": null,
+		"stateInscription": "",
+		"corporatePhone": null,
+		"isCorporate": false,
+		"userProfileId": "20cbf9a6-102f-414f-9082-3e373c8109db",
+		"userProfileVersion": null,
+		"customerClass": null,
+		"customerCode": null
+	},
+	"items": [
+		{
+			"uniqueId": "AEDE9ECC5462403DBCA3619A866891A1",
+			"id": "1642321",
+			"productId": "1000139869",
+			"ean": "7909940221380 1/9",
+			"lockId": null,
+			"itemAttachment": {
+				"content": {},
+				"name": null
+			},
+			"attachments": [],
+			"quantity": 1,
+			"seller": "grupoxpto0026",
+			"name": "Bota Feminina Cano Curto Costura Pegada Preto Preto - 36",
+			"refId": "999999992549541",
+			"price": 29999,
+			"listPrice": 29999,
+			"manualPrice": null,
+			"manualPriceAppliedBy": null,
+			"priceTags": [
+				{
+					"name": "discount@shipping-83b6153d-f03f-4403-b253-a7a5eba99780#6fa3d9bb-6192-4093-9419-880691902c67",
+					"value": -1653,
+					"isPercentual": false,
+					"identifier": "83b6153d-f03f-4403-b253-a7a5eba99780",
+					"rawValue": -16.530,
+					"rate": null,
+					"jurisCode": null,
+					"jurisType": null,
+					"jurisName": null
+				}
+			],
+			"imageUrl": "https://grupoxpto.external-api-img.com.br/arquivos/ids/1702954-120-120/28200805385--7-.jpg.jpg?v=638829249147800000",
+			"detailUrl": "/bota-feminina-cano-curto-costura-pegada-preto-28200805/p",
+			"components": [],
+			"bundleItems": [],
+			"params": [],
+			"offerings": [],
+			"attachmentOfferings": [],
+			"sellerSku": "1642321",
+			"priceValidUntil": "2026-06-10T19:46:54.0000000+00:00",
+			"commission": 0,
+			"tax": 0,
+			"preSaleDate": null,
+			"additionalInfo": {
+				"brandName": "Pegada",
+				"brandId": "2000249",
+				"categoriesIds": "/2/4/15/",
+				"categories": [
+					{
+						"id": 15,
+						"name": "Cano Baixo"
+					},
+					{
+						"id": 4,
+						"name": "Botas"
+					},
+					{
+						"id": 2,
+						"name": "Calçados Femininos"
+					}
+				],
+				"productClusterId": "138,139,143,153,173,176,186,188,190,191,193,201,206,208,227,228,229,233,234,235,242,243,256,273,277,281,283",
+				"commercialConditionId": "1",
+				"dimension": {
+					"cubicweight": 4.1267,
+					"height": 24.5000,
+					"length": 33.0,
+					"weight": 1003.0,
+					"width": 24.5000
+				},
+				"offeringInfo": null,
+				"offeringType": null,
+				"offeringTypeId": null
+			},
+			"measurementUnit": "un",
+			"unitMultiplier": 1.0,
+			"sellingPrice": 29999,
+			"isGift": false,
+			"shippingPrice": null,
+			"rewardValue": 0,
+			"freightCommission": 0,
+			"priceDefinition": {
+				"sellingPrices": [
+					{
+						"value": 29999,
+						"quantity": 1
+					}
+				],
+				"calculatedSellingPrice": 29999,
+				"total": 29999,
+				"reason": null
+			},
+			"taxCode": null,
+			"parentItemIndex": null,
+			"parentAssemblyBinding": null,
+			"callCenterOperator": null,
+			"serialNumbers": null,
+			"assemblies": [],
+			"costPrice": null
+		}
+	],
+	"marketplaceItems": [],
+	"cancellationRequests": [
+		{
+			"id": "5ad7eda3bbc14244a2df199152f274c2",
+			"reason": "Não encontrado",
+			"cancellationRequestDate": "2025-06-12T14:24:43.5915519+00:00",
+			"requestedByUser": false,
+			"deniedBySeller": false,
+			"deniedBySellerReason": null,
+			"cancellationRequestDenyDate": null
+		}
+	],
+	"approvedBy": null,
+	"cancelledBy": null,
+	"purchaseAgentData": null,
+	"pendingData": null,
+	"creationEnvironment": "STABLE"
+}

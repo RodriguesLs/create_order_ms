@@ -1,0 +1,36 @@
+{
+  "status": "conferir",
+  "waitingSince": "2025-06-10T19:52:08+00:00",
+  "shippingLimit": "2025-06-11T14:00:00+00:00",
+  "sendStatus": "no_prazo",
+  "courier": "Sedex",
+  "total": 299.99,
+  "discounts": 50.0,
+  "customerName": "vanda cardoso",
+  "customerPhoneNumber": "12991687444",
+  "customerEmail": "vandahelena328@gmail.com-250801439675b.ct.external-api.com.br",
+  "customerCpfCnpj": "08106697819",
+  "customerCep": "12125832",
+  "customerStreet": "Avenida Agostinho Manfredini",
+  "customerNumber": "1155",
+  "customerComplement": "ap 3",
+  "customerNeighborhood": "Loteamento Residencial São Vicente de Paulo",
+  "customerCity": "Tremembé",
+  "customerUf": "SP",
+  "freightValue": 10.0,
+  "sellerOrderId": "SLP-1538600587420-02",
+  "idExternalAPI": "1538600587420-02",
+  "items": [
+    {
+      "description": "Bota Feminina Cano Curto Costura Pegada Preto Preto - 36",
+      "ncm": null,
+      "codeProduct": "1000139869",
+      "ean": "7909940221380 1/9",
+      "sku": "999999992549541",
+      "comercialUnity": "un",
+      "comercialUnityValue": 299.99,
+      "quantity": 1
+    }
+  ],
+  "store": "grupoxpto0026"
+}
