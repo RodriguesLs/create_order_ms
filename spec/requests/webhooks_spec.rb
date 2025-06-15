@@ -25,6 +25,17 @@ RSpec.describe 'Order Webhooks', type: :request do
         post '/webhooks/order', params: valid_payload, headers: headers
         expect(response).to have_http_status(:ok)
       end
+
+      it 'cria um WebhookLog com os dados recebidos' do
+        expect {
+          post '/webhooks/order', params: valid_payload, headers: headers
+        }.to change(WebhookLog, :count).by(1)
+
+        log = WebhookLog.last
+        expect(log.order_id).to eq("1538830588318-01")
+        expect(log.account).to eq("grupooscar")
+        expect(log.success).to eq(true) # ajustar conforme o comportamento do serviço externo
+      end
     end
 
     context 'without valid token' do
